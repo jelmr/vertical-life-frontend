@@ -2,9 +2,8 @@ import {AreaName} from './area';
 
 interface TimeSlotBase {
   area: AreaName;
-  booking_count: number;
   free_spots: number;
-  spots_count: number;
+  capacity: number;
 }
 
 export interface RawTimeSlot extends TimeSlotBase {

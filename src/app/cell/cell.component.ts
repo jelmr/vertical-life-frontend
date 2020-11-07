@@ -35,8 +35,11 @@ export class CellComponent implements OnInit {
   }
 
   private getProgress(): number {
-    const freeSpots = this.isEnabled(this.timeSlot) ? this.timeSlot.free_spots : 0;
-    return (30 - freeSpots) / 30;
+    if (!this.isEnabled(this.timeSlot)) {
+      return 1;
+    }
+
+    return (this.timeSlot.capacity - this.timeSlot.free_spots) / this.timeSlot.capacity;
   }
 
   constructor() {

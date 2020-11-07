@@ -1,6 +1,13 @@
 <div class="table">
-  <div *ngFor="let data of timeSlotsByDay$ | async" class="row">
 
+  <div *ngIf="times$" class="row">
+    <div class="date"></div>
+    <div *ngFor="let time of times$ | async" class="time">
+      {{ time | date:'HH:mm'}}
+    </div>
+  </div>
+
+  <div *ngFor="let data of timeSlotsByDay$ | async" class="row">
     <div class="date">
       {{ data.date | date:'EEEE' }} <br>
       {{ data.date | date:'dd LLL'}}</div>
