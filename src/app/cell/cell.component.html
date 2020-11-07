@@ -1,5 +1,5 @@
-<div class="inner">
+<div class="inner" [title]="timeSlot.check_in_at">
   <div class="content">
-    {{timeSlot.free_spots}}
+    {{isEnabled(timeSlot) ? timeSlot.free_spots : '-'}}
   </div>
 </div>

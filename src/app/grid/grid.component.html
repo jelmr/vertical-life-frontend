@@ -1,7 +1,10 @@
 <div class="table">
-  <div *ngFor="let data of timeSlotsByDay$ | async | keyvalue" class="row">
+  <div *ngFor="let data of timeSlotsByDay$ | async" class="row">
 
-    <div class="date">{{ data.key }}:</div>
+    <div class="date">
+      {{ data.date | date:'EEEE' }} <br>
+      {{ data.date | date:'dd LLL'}}</div>
 
-    <app-cell *ngFor="let slot of data.value" [timeSlot]="slot"></app-cell>
+    <app-cell *ngFor="let slot of data.timeSlots" [timeSlot]="slot"></app-cell>
+  </div>
 </div>
