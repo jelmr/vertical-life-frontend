@@ -1,0 +1,26 @@
+
+:host {
+
+
+  display: flex;
+  margin: 3px;
+  flex-grow: 1;
+  background-color: #bbf;
+
+  .inner {
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+    position: relative;
+
+    .content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

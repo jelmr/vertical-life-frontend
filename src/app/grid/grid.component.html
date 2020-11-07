@@ -1,0 +1,7 @@
+<div class="table">
+  <div *ngFor="let data of timeSlotsByDay$ | async | keyvalue" class="row">
+
+    <div class="date">{{ data.key }}:</div>
+
+    <app-cell *ngFor="let slot of data.value" [timeSlot]="slot"></app-cell>
+</div>
