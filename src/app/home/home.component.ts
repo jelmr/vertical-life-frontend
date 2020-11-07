@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {AreaName} from '../models/area';
 import {TimeSlot} from '../models/time-slot';
@@ -8,7 +8,8 @@ import {switchMap} from 'rxjs/operators';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrls: ['./home.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeComponent {
 

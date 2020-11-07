@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {DisabledTimeSlot, TimeSlot, TimeSlotsForDay} from '../models/time-slot';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -6,7 +6,8 @@ import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.less']
+  styleUrls: ['./grid.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class GridComponent implements OnInit {
 
@@ -16,6 +17,10 @@ export class GridComponent implements OnInit {
 
 
   constructor() {
+  }
+
+  trackByIndex = (index: number): number => {
+    return index;
   }
 
   ngOnInit(): void {

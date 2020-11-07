@@ -22,7 +22,7 @@ export class ApiService {
       map(rawTimeSlots => rawTimeSlots.map(slot => ({
           ...slot,
           check_in_at: new Date(slot.check_in_at),
-          created_at: new Date(slot.check_in_at),
+          created_at: new Date(slot.created_at),
         }))
       )
     );

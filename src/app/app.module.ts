@@ -10,6 +10,8 @@ import {CellComponent} from './cell/cell.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormsModule} from '@angular/forms';
+import {SlotDetailsDialog} from './dialogs/cell-click/slot-details.dialog';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import {FormsModule} from '@angular/forms';
     HomeComponent,
     GridComponent,
     CellComponent,
+    SlotDetailsDialog,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +27,7 @@ import {FormsModule} from '@angular/forms';
     HttpClientModule,
     BrowserAnimationsModule,
     MatRadioModule,
+    MatDialogModule,
     FormsModule,
   ],
   providers: [],

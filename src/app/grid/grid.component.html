@@ -7,11 +7,11 @@
     </div>
   </div>
 
-  <div *ngFor="let data of timeSlotsByDay$ | async" class="row">
+  <div *ngFor="let data of timeSlotsByDay$ | async; trackBy:trackByIndex" class="row">
     <div class="date">
       {{ data.date | date:'EEE dd LLL'}}
     </div>
 
-    <app-cell *ngFor="let slot of data.timeSlots" [timeSlot]="slot"></app-cell>
+    <app-cell *ngFor="let slot of data.timeSlots; trackBy:trackByIndex" [timeSlot]="slot"></app-cell>
   </div>
 </div>

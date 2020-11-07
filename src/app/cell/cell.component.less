@@ -4,10 +4,19 @@
   margin: 3px;
   flex-grow: 1;
   border-radius: 2px;
+  transition: linear 0.2s;
+  min-width: 40px;
+  min-height: 40px;
+
+  &:hover {
+    background-color: #ff4081 !important;
+    color: #fff !important;
+    cursor: pointer;
+  }
 
   .inner {
     width: 100%;
-    padding-top: 100%; /* 1:1 Aspect Ratio */
+    padding-top: 100%;
     position: relative;
 
     .content {
