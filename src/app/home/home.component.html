@@ -1,9 +1,10 @@
+<div class="options">
+  <mat-radio-group [ngModel]="selectedArea$ | async" (ngModelChange)="selectedArea$.next($event)">
+    <mat-radio-button *ngFor="let area of AREAS" [value]="area">
+      {{area | titlecase}}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
 
-<h2>Sport</h2>
-<app-grid [timeSlots$]="sport$"></app-grid>
+<app-grid [timeSlots$]="timeSlots$"></app-grid>
 
-<h2>Boulder</h2>
-<app-grid [timeSlots$]="boulder$"></app-grid>
-
-<h2>Outside</h2>
-<app-grid [timeSlots$]="outside$"></app-grid>

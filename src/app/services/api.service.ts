@@ -4,7 +4,7 @@ import {AreaName} from '../models/area';
 import {RawTimeSlot, TimeSlot} from '../models/time-slot';
 import {environment} from '../../environments/environment';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {map, shareReplay} from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,10 +12,12 @@ import {map} from 'rxjs/operators';
 })
 export class ApiService {
 
+  private cache = {};
+
   constructor(private http: HttpClient) {
   }
 
-  public getTimeSlots(area: AreaName): Observable<TimeSlot[]> {
+  private _getTimeSlots$(area: AreaName): Observable<TimeSlot[]> {
     return this.http.get<RawTimeSlot[]>(`${environment.API_BASE}/${area}`).pipe(
       map(rawTimeSlots => rawTimeSlots.map(slot => ({
           ...slot,
@@ -24,6 +26,15 @@ export class ApiService {
         }))
       )
     );
+  }
+
+
+  public getTimeSlots$(area: AreaName): Observable<TimeSlot[]> {
+    if (!(area in this.cache)) {
+      this.cache[area] = this._getTimeSlots$(area).pipe(shareReplay(1));
+    }
+
+    return this.cache[area];
   }
 
 }

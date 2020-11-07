@@ -8,6 +8,8 @@ import {HttpClientModule} from '@angular/common/http';
 import {GridComponent} from './grid/grid.component';
 import {CellComponent} from './cell/cell.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatRadioModule} from '@angular/material/radio';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatRadioModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

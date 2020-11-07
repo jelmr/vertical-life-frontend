@@ -9,8 +9,8 @@
 
   <div *ngFor="let data of timeSlotsByDay$ | async" class="row">
     <div class="date">
-      {{ data.date | date:'EEEE' }} <br>
-      {{ data.date | date:'dd LLL'}}</div>
+      {{ data.date | date:'EEE dd LLL'}}
+    </div>
 
     <app-cell *ngFor="let slot of data.timeSlots" [timeSlot]="slot"></app-cell>
   </div>

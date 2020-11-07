@@ -2,7 +2,8 @@ import {Component} from '@angular/core';
 import {ApiService} from '../services/api.service';
 import {AreaName} from '../models/area';
 import {TimeSlot} from '../models/time-slot';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -11,14 +12,15 @@ import {Observable} from 'rxjs';
 })
 export class HomeComponent {
 
-  public sport$: Observable<TimeSlot[]>;
-  public boulder$: Observable<TimeSlot[]>;
-  public outside$: Observable<TimeSlot[]>;
+  public AREAS = [AreaName.SPORT, AreaName.BOULDER, AreaName.OUTSIDE];
+  public selectedArea$ = new BehaviorSubject(AreaName.SPORT);
+
+  public timeSlots$: Observable<TimeSlot[]>;
 
   constructor(private api: ApiService) {
-    this.sport$ = api.getTimeSlots(AreaName.SPORT);
-    this.boulder$ = api.getTimeSlots(AreaName.BOULDER);
-    this.outside$ = api.getTimeSlots(AreaName.OUTSIDE);
+    this.timeSlots$ = this.selectedArea$.pipe(
+      switchMap(area => api.getTimeSlots$(area))
+    );
   }
 
 }
