@@ -46,8 +46,12 @@ export class GridComponent implements OnInit {
           for (const time of Object.keys(uniqueTimeSlots)) {
             const found = dayTimeSlots.find(slot => slot.check_in_at.toLocaleTimeString() === time);
             if (!found && dayTimeSlots.length > 0) {
+              // Take time from uniqueTimeSlots, take date+month+year from dayTimeSlots[0]
+              const checkInDate = dayTimeSlots[0].check_in_at;
+              const newCheckInAt = uniqueTimeSlots[time].check_in_at;
+              newCheckInAt.setFullYear(checkInDate.getFullYear(), checkInDate.getMonth(), checkInDate.getDate());
               dayTimeSlots.push({
-                check_in_at: uniqueTimeSlots[time].check_in_at,
+                check_in_at: newCheckInAt,
                 disabled: true
               });
             }
