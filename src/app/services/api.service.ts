@@ -17,12 +17,27 @@ export class ApiService {
   constructor(private http: HttpClient) {
   }
 
+  private static parseDate(dateStr: string): Date {
+    const dateParser = /(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})(\.\d*)?\+(\d{2}):(\d{2})/;
+    const match = dateStr.match(dateParser);
+    const date =  new Date(
+      parseInt(match[1], 10),  // year
+      parseInt(match[2], 10) - 1,  // monthIndex
+      parseInt(match[3], 10),  // day
+      parseInt(match[4], 10),  // hours
+      parseInt(match[5], 10),  // minutes
+      parseInt(match[6], 10)  // seconds
+    );
+
+    return new Date(date.getTime() - date.getTimezoneOffset() * 60000); // Adjust timezone
+  }
+
   private _getTimeSlots$(area: AreaName): Observable<TimeSlot[]> {
     return this.http.get<RawTimeSlot[]>(`${environment.API_BASE}/${area}`).pipe(
       map(rawTimeSlots => rawTimeSlots.map(slot => ({
           ...slot,
-          check_in_at: new Date(slot.check_in_at),
-          created_at: new Date(slot.created_at),
+          check_in_at: ApiService.parseDate(slot.check_in_at),
+          created_at: ApiService.parseDate(slot.created_at),
         }))
       )
     );
